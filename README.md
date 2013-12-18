@@ -8,7 +8,7 @@ To get started update your dependencies in `composer.json`
 
 ```js
 	"require": {
-		"codesleeve/watcher": "dev-testing"
+		"codesleeve/watcher": "dev-master"
 	},
 ```
 
