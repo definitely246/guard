@@ -28,7 +28,7 @@ And voila! You should now be able to run
    php artisan watch:assets
 ```
 
-This doesn't do much exist log out changes to our assets though. So let's learn how to configure this thing.
+This doesn't do much except [print out changes to our assets](https://github.com/CodeSleeve/watcher/blob/master/src/Codesleeve/Watcher/Events/LogEvent.php) though. So let's learn how to configure this thing.
 
 ### Configuration
 
