@@ -28,7 +28,7 @@ return array(
 	| events
 	|--------------------------------------------------------------------------
 	|
-	| When the watcher_paths are changed the events listened here will be
+	| When the paths are changed the events listened here will be
 	| called in the order they are listed. These classes should implement the
 	| interface Codesleeve\Watcher\Events\EventInterface.
 	|

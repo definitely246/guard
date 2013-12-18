@@ -2,30 +2,61 @@
 
 I'll be watching you... *stalker face*
 
-This is a package utilized by codesleeve\asset-pipeline to allow us to store common event classes here and also a couple of tests. For the most part we rely heavily on [Lurker](https://github.com/henrikbjorn/Lurker).
+This is a laravel 4 package that relies heavily on [Lurker](https://github.com/henrikbjorn/Lurker).
 
-You need paths to watch (these should exist...)
-
-```php
-
-	$paths = array(
-		'/some/paths/here',
-		'/even/more/paths/here',
-	);
-```
-
-You need event classes which should implement [Codesleeve\Watcher\Events\EventInterface](https://github.com/CodeSleeve/watcher/blob/master/src/Codesleeve/Watcher/Events/EventInterface.php)
-
-```
-	$events = array(
-		new Events\LiveReloadEvent,
-		new Events\LogEvent
-	);
-```
-
-Finally call the watcher start
+The service provider needs to be registered in `app/config/app.php`
 
 ```php
-	$watcher = new Watcher($paths, $events);
-	$watcher->start();
+'providers' => array(
+		...
+		'Codesleeve\Watcher\WatcherServiceProvider',
+	),
+
+```
+
+And voila! You should now be able to run
+
+```php
+   php artisan watch:assets
+```
+
+This doesn't do much exist log out changes to our assets though. So let's learn how to configure this thing.
+
+### Configuration
+
+First you should publish the config
+
+```php
+   php artisan config:publish codesleeve/watcher
+```
+
+Next open up `app/config/packages/codessleve/watcher/config.php`
+
+
+#### paths
+
+These paths are relative to your base laravel project and will be monitored by watcher. There can be both directories and files in this array.
+
+```php
+	'paths' => array(
+		'app/assets/javascripts',
+		'app/assets/stylesheets',
+		'app/assets/images',
+		'lib/assets/javascripts',
+		'lib/assets/stylesheets',
+		'lib/assets/images',
+		'provider/assets/javascripts',
+		'provider/assets/stylesheets',
+		'provider/assets/images'
+	),
+```
+
+#### events
+
+Event classes should implement [Codesleeve\Watcher\Events\EventInterface](https://github.com/CodeSleeve/watcher/blob/master/src/Codesleeve/Watcher/Events/EventInterface.php) and are called in order whenever a file in your paths above changes.
+
+```php
+	'events' => array(
+		new Codesleeve\Watcher\Events\LogEvent
+	),
 ```
