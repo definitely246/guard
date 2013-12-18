@@ -4,6 +4,14 @@ I'll be watching you... *stalker face*
 
 This is a laravel 4 package that relies heavily on [Lurker](https://github.com/henrikbjorn/Lurker).
 
+To get started update your dependencies in `composer.json`
+
+```js
+	"require": {
+		"codesleeve/watcher": "dev-testing"
+	},
+```
+
 The service provider needs to be registered in `app/config/app.php`
 
 ```php
