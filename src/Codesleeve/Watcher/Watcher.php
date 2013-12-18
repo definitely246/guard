@@ -5,43 +5,43 @@ use Lurker\ResourceWatcher;
 
 class Watcher
 {
-    public function __construct(array $paths = array(), array $events = array())
+    public function __construct(array $config)
     {
-        $this->events = $events;
-        $this->paths = $paths;
-        $this->watcher = new ResourceWatcher;
+        $this->config = $config;
+        $this->runner = new ResourceWatcher;
     }
 
     public function start()
     {
-        $events = $this->events;
-        $watcher = $this->watcher;
+        $events = $this->config['events'];
+        $paths = $this->config['paths'];
+        $runner = $this->runner;
         
-        foreach ($this->paths as $index => $path)
+        foreach ($paths as $index => $path)
         {
             if (is_dir($path) || is_file($path))
             {
-    			$watcher->track("paths.{$index}", $path);
-                $watcher->addListener("paths.{$index}", function (FilesystemEvent $fsEvent) use ($events, $watcher)
+    			$runner->track("paths.{$index}", $path);
+                $runner->addListener("paths.{$index}", function (FilesystemEvent $fsEvent) use ($events, $runner)
                 {
                     foreach ($events as $event)
                     {
-                        $event->listen($fsEvent, $watcher);
+                        $event->listen($fsEvent, $runner);
                     }
                 });
             }
 		}
 
-		$watcher->start();
+		$runner->start();
     }
 
-    public function setPaths($paths)
+    public function getConfig()
     {
-    	$this->paths = $paths;
+        return $this->config;
     }
 
-    public function setEvents($events)
+    public function setConfig(array $config)
     {
-    	$this->events = $events;
+        $this->config = $config;
     }
 }

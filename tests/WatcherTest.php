@@ -10,7 +10,6 @@ class WatcherTest extends \PHPUnit_Framework_TestCase
 		);
 
 		$events = array(
-			new Events\LiveReloadEvent,
 			new Events\LogEvent
 		);
 
