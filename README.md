@@ -2,7 +2,7 @@
 
 I'll be watching you... *stalker face*
 
-This is a package utilized by asset pipeline to allow us to store common event classes here and also a couple of tests. For the most part we rely heavily on [Lurker](https://github.com/henrikbjorn/Lurker).
+This is a package utilized by codesleeve\asset-pipeline to allow us to store common event classes here and also a couple of tests. For the most part we rely heavily on [Lurker](https://github.com/henrikbjorn/Lurker).
 
 You need paths to watch (these should exist...)
 
