@@ -1,6 +1,7 @@
 {
     "name": "codesleeve/watcher",
-    "description": "",
+    "description": "This is a package which can be called to watch a list of paths.",
+    "license": "MIT",
     "authors": [
         {
             "name": "Kelt Dockins",
