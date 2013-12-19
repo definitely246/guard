@@ -1,5 +1,5 @@
 {
-    "name": "codesleeve/watcher",
+    "name": "codesleeve/guard",
     "description": "This is a package which can be called to watch a list of paths.",
     "license": "MIT",
     "authors": [
@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Codesleeve\\Watcher": "src/"
+            "Codesleeve\\Guard": "src/"
         }
     },
     "minimum-stability": "dev"

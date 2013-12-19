@@ -1,4 +1,4 @@
-# Watcher
+# Guard
 
 I'll be watching you... *stalker face*
 
@@ -8,7 +8,7 @@ To get started update your dependencies in `composer.json`
 
 ```js
 	"require": {
-		"codesleeve/watcher": "dev-master"
+		"codesleeve/guard": "dev-master"
 	},
 ```
 
@@ -17,7 +17,7 @@ The service provider needs to be registered in `app/config/app.php`
 ```php
 'providers' => array(
 		...
-		'Codesleeve\Watcher\WatcherServiceProvider',
+		'Codesleeve\Guard\GuardServiceProvider',
 	),
 
 ```
@@ -25,25 +25,25 @@ The service provider needs to be registered in `app/config/app.php`
 And voila! You should now be able to run
 
 ```php
-   php artisan watch:assets
+   php artisan guard:watch
 ```
 
-This doesn't do much except [print out changes to our assets](https://github.com/CodeSleeve/watcher/blob/master/src/Codesleeve/Watcher/Events/LogEvent.php) though. So let's learn how to configure this thing.
+This doesn't do much except [print out changes to our assets](https://github.com/CodeSleeve/Guard/blob/master/src/Codesleeve/Guard/Events/LogEvent.php) though. So let's learn how to configure this thing.
 
 ### Configuration
 
 First you should publish the config
 
 ```php
-   php artisan config:publish codesleeve/watcher
+   php artisan config:publish codesleeve/guard
 ```
 
-Next open up `app/config/packages/codessleve/watcher/config.php`
+Next open up `app/config/packages/codessleve/guard/config.php`
 
 
 #### paths
 
-These paths are relative to your base laravel project and will be monitored by watcher. There can be both directories and files in this array.
+These paths are relative to your base laravel project and will be monitored by Guard. There can be both directories and files in this array.
 
 ```php
 	'paths' => array(
@@ -61,10 +61,10 @@ These paths are relative to your base laravel project and will be monitored by w
 
 #### events
 
-Event classes should implement [Codesleeve\Watcher\Events\EventInterface](https://github.com/CodeSleeve/watcher/blob/master/src/Codesleeve/Watcher/Events/EventInterface.php) and are called in order whenever a file in your paths above changes.
+Event classes should implement [Codesleeve\Guard\Events\EventInterface](https://github.com/CodeSleeve/Guard/blob/master/src/Codesleeve/Guard/Events/EventInterface.php) and are called in order whenever a file in your paths above changes.
 
 ```php
 	'events' => array(
-		new Codesleeve\Watcher\Events\LogEvent
+		new Codesleeve\Guard\Events\LogEvent
 	),
 ```

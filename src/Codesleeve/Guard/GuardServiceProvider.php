@@ -1,8 +1,8 @@
-<?php namespace Codesleeve\Watcher;
+<?php namespace Codesleeve\Guard;
 
 use Illuminate\Support\ServiceProvider;
 
-class WatcherServiceProvider extends ServiceProvider {
+class GuardServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -18,19 +18,19 @@ class WatcherServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->package('codesleeve/watcher');
+		$this->package('codesleeve/guard');
 
-		$this->app['watcher'] = $this->app->share(function($app)
+		$this->app['guard'] = $this->app->share(function($app)
 		{
-			$config = $app->config->get('watcher::config');
+			$config = $app->config->get('guard::config');
 			$config['base_path'] = base_path();
 			$config['environment'] = $app['env'];
 			
-			$watcher = new Watcher($config);
+			$guard = new Guard($config);
 
-			$app['events']->fire('watcher.boot', $watcher);
+			$app['events']->fire('guard.boot', $Guard);
 
-			return $watcher;
+			return $guard;
 		});
 
 		$this->app['watch'] = $this->app->share(function($app)

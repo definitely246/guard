@@ -34,7 +34,7 @@ return array(
 	|
 	*/
 	'events' => array(
-		new Codesleeve\Watcher\Events\LogEvent
+		new Codesleeve\Guard\Events\LogEvent
 	),
 
 );

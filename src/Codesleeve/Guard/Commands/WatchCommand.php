@@ -1,8 +1,8 @@
-<?php namespace Codesleeve\Watcher\Commands;
+<?php namespace Codesleeve\Guard\Commands;
 
 use App;
 use Illuminate\Console\Command;
-use Codesleeve\Watcher\Watcher;
+use Codesleeve\Guard\Guard;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -13,7 +13,7 @@ class WatchCommand extends Command
      *
      * @var string
      */
-    protected $name = 'watch:assets';
+    protected $name = 'guard:watch';
 
     /**
      * The console command description.
@@ -29,7 +29,7 @@ class WatchCommand extends Command
      */
     public function fire()
     {
-        $watcher = App::make('watcher');
+        $watcher = App::make('guard');
 
         $config = $watcher->getConfig();
         

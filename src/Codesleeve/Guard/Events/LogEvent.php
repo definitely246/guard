@@ -1,4 +1,4 @@
-<?php namespace Codesleeve\Watcher\Events;
+<?php namespace Codesleeve\Guard\Events;
 
 use DateTime;
 

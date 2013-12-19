@@ -1,9 +1,9 @@
-<?php namespace Codesleeve\Watcher;
+<?php namespace Codesleeve\Guard;
 
 use Lurker\Event\FilesystemEvent;
 use Lurker\ResourceWatcher;
 
-class Watcher
+class Guard
 {
     public function __construct(array $config)
     {

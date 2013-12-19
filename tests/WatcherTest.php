@@ -1,6 +1,6 @@
-<?php namespace Codesleeve\Watcher;
+<?php namespace Codesleeve\Guard;
 
-class WatcherTest extends \PHPUnit_Framework_TestCase
+class GuardTest extends \PHPUnit_Framework_TestCase
 {	
 	public function testConstruction()
 	{
@@ -13,7 +13,7 @@ class WatcherTest extends \PHPUnit_Framework_TestCase
 			new Events\LogEvent
 		);
 
-		$watcher = new Watcher($paths, $events);
+		$watcher = new Guard($paths, $events);
 
 		// cannot start this thing because it will
 		// lock up phpunit ^_^
