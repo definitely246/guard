@@ -2,8 +2,8 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class GuardServiceProvider extends ServiceProvider {
-
+class GuardServiceProvider extends ServiceProvider
+{
 	/**
 	 * Indicates if loading of the provider is deferred.
 	 *
@@ -28,7 +28,7 @@ class GuardServiceProvider extends ServiceProvider {
 			
 			$guard = new Guard($config);
 
-			$app['events']->fire('guard.boot', $Guard);
+			$app['events']->fire('guard.boot', $guard);
 
 			return $guard;
 		});

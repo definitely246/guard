@@ -2,5 +2,7 @@
 
 interface EventInterface
 {
-	public function listen($event, $watcher);
+	public function start($watcher);
+	public function stop();
+	public function listen($event);
 }

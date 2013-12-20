@@ -23,20 +23,38 @@ class WatchCommand extends Command
     protected $description = "Watches files and folders and runs the events in your pipeline config";
 
     /**
+     * The signals we want to watch for when user closes guard watch
+     * 
+     * @var array
+     */
+    protected $signals = array(SIGTERM, SIGINT, SIGHUP, SIGUSR1);
+
+    /**
      * Execute the console command.
      *
      * @return void
      */
     public function fire()
     {
-        $watcher = App::make('guard');
-
-        $config = $watcher->getConfig();
+        $guard = App::make('guard');
+        $config = $guard->getConfig();
         
         $realpaths = array();
         $base = $config['base_path'];
         $paths = $config['paths'];
         $events = $config['events'];
+
+        // tick use required as of PHP 4.3.0
+        declare(ticks = 1);
+
+        foreach ($this->signals as $signal)
+        {
+            pcntl_signal($signal, function($signal) use ($guard)
+            {
+                $guard->stop();
+                exit;
+            });
+        }
 
         foreach ($paths as $path)
         {
@@ -48,9 +66,9 @@ class WatchCommand extends Command
         }
 
         $config['paths'] = $realpaths;
-        $watcher->setConfig($config);
+        $guard->setConfig($config);
 
         $this->line('Watcher started, waiting for changes...');
-        $watcher->start();
+        $guard->start();
     }
 }

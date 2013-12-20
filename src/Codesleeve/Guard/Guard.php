@@ -16,7 +16,8 @@ class Guard
         $events = $this->config['events'];
         $paths = $this->config['paths'];
         $runner = $this->runner;
-        
+
+        // register each path in lurker        
         foreach ($paths as $index => $path)
         {
             if (is_dir($path) || is_file($path))
@@ -32,7 +33,28 @@ class Guard
             }
 		}
 
+        // tell each event we are starting
+        foreach ($events as $event)
+        {
+            $event->start($this);
+        }
+
+        // start the lurker runner
 		$runner->start();
+    }
+
+    /**
+     * Stops all the events we have running
+     * 
+     * @return [type] [description]
+     */
+    public function stop()
+    {
+        $events = $this->config['events'];
+        foreach ($events as $event)
+        {
+            $event->stop();
+        }
     }
 
     public function getConfig()
