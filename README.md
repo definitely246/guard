@@ -1,8 +1,8 @@
 # Guard
 
-I'll be watching you... *stalker face*
+### No ruby? No node? No problem.
 
-This is a laravel 4 package that relies heavily on [Lurker](https://github.com/henrikbjorn/Lurker).
+Guard allows you to run custom and packaged events whenever files are changed with your configurable paths. _Note, this package is meant to be used with Laravel 4._
 
 To get started update your dependencies in `composer.json`
 
@@ -47,15 +47,10 @@ These paths are relative to your base laravel project and will be monitored by G
 
 ```php
 	'paths' => array(
-		'app/assets/javascripts',
-		'app/assets/stylesheets',
-		'app/assets/images',
-		'lib/assets/javascripts',
-		'lib/assets/stylesheets',
-		'lib/assets/images',
-		'provider/assets/javascripts',
-		'provider/assets/stylesheets',
-		'provider/assets/images'
+		'app/assets',
+		'app/models',
+		'app/controllers',
+		'app/views',
 	),
 ```
 
@@ -68,3 +63,9 @@ Event classes should implement [Codesleeve\Guard\Events\EventInterface](https://
 		new Codesleeve\Guard\Events\LogEvent
 	),
 ```
+
+## FAQ
+
+#### pcntl_signal disabled_functions
+
+In order to capture the ctrl+c event from keyboard we use pcntl_signal which depending on what package manager/operating system you use could be disabled in your php.ini. Be sure to [remove pcntl_signal](http://stackoverflow.com/questions/16262854/pcntl-not-working-on-ubuntu-from-security-reasons) from your `disabled_functions`.
